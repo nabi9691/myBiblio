@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block title %} 
+Nouvel catégorie
+{% endblock %}
+
+{% block body %}
+<h1> 
+Une nouvelle catégorie a été ajouté !
+</h1>
+
+<br/><br/>
+
+<hr>
+
+<br/>
+
+<div id="table" class="table">
+<table border="1">
+<tbody>
+<thead>
+<tr>
+<th>id</th>
+<th>titre</th>
+<th>contenu</th>
+<th>date</th>
+<th>image</th>
+<th>action</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+
+<td>{{  categorie.id    }}</td> 
+<td>{{  categorie.titre    }}</td> 
+<td>{{  categorie.contenu    }}</td> 
+<td>{{  categorie.date|date("d/m/Y")    }}</td> 
+<td>{{  categorie.image    }}</td> 
+<td>{{  categorie.action    }}</td> 
+
+</tr>
+</tbody>
+</div>
+
+{% endblock %}

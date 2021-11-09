@@ -26,8 +26,10 @@
 <br/>
 <div id="menu" class="menu">
 <ul>
+<li> <a href="{{ path('newpageform_categorie') }}">Veuillez renplir le formulaire !</a></li> 
 
-<li> <a href="{{ path('new_categorie') }}">Veuillez ajouter une nouveelle categorie !</a></li> 
+
+<li> <a href="{{ path('nouvelleCategorie_index') }}">Veuillez ajouter une nouveelle categorie !</a></li> 
 
 </ul>
 
@@ -40,9 +42,13 @@
 						<td>{{ categorie.id }}
 						</td>
 						<td>{{ categorie.titre }}
-						</td>
-						<td>{{ categorie.resume }}</td>
+						</td><td>{{ categorie.contenu }}</td>
 <td>{{ categorie.date|date("d/m/Y") }}</td>
+
+
+<td>{{ categorie.image }}</td>
+<td>{{ categorie.action }}</td>
+
 
 </tr>
 				{% else %}

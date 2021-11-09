@@ -25,12 +25,23 @@ class Categories
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $resume;
+    private $contenu;
+
 
     /**
      * @ORM\Column(type="date", nullable=false)
      */
     private $date;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $action;
 
     
     public function getId(): ?int
@@ -50,14 +61,14 @@ class Categories
         return $this;
     }
 
-    public function getResume(): ?string
+    public function getContenu(): ?string
     {
-        return $this->resume;
+        return $this->contenu;
     }
 
-    public function setResume(string $resume): self
+    public function setContenu(string $contenu): self
     {
-        $this->resume    = $resume;
+        $this->contenu = $contenu;
 
         return $this;
     }
@@ -70,8 +81,37 @@ class Categories
     public function setDate(?\DateTimeInterface $date): self
     {
         $this->date = $date;
+        
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
+
+    public function getAction(): ?string
+    {
+        return $this->action;
+    }
+
+    public function setAction(string $action): self
+    {
+        $this->action = $action;
+
+        return $this;
+    }
+
+    
+
+
+
 
 }
