@@ -22,7 +22,7 @@ use Symfony\Component\Routing\Annotation\Route;
      class ArticlesController extends AbstractController
     {
     /**
-     * @Route("/", name="articles_index")
+     * @Route("/", name="article_index")
      */
 
     public function index(): Response
@@ -58,12 +58,12 @@ use Symfony\Component\Routing\Annotation\Route;
 }
 
 
-
     /**
      * @Route("/newpageform", name="newpageform_article")
     */
     public function pageForm(Request $request, EntityManagerInterface $manager)
     {
+    
         $articles =new Articles(); 
 
         $form = $this->createFormBuilder($articles) 
@@ -83,7 +83,7 @@ use Symfony\Component\Routing\Annotation\Route;
             $manager->persist($articles); 
             $manager->flush();
     
-                return $this->redirectToRoute('newpageform_article', 
+                return $this->redirectToRoute('article_index', 
         
             ['id'=>$articles->getId(),
         ]);

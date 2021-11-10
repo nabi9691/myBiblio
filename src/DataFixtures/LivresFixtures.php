@@ -22,7 +22,7 @@ class LivresFixtures extends Fixture
           ->setHauteur("  l'auteur de mon livre N°$i  ")
   ->setResume("  Le résumé de mon livre N°$i  ")
   ->setContenu("  Le contenu de mon livre N°$i  ")
-  ->setCommentaires("  Les commentaires de mon livre N°$i  ");
+  ->setCommentaires("  Les commentaires de mon livres N°$i");
 
 
           $manager->persist($livres);

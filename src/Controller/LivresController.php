@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class LivresController extends AbstractController
 {
     /**
-     * @Route("/", name="livres_index")
+     * @Route("/", name="livre_index")
      */
     public function index(): Response
     {
@@ -50,77 +50,50 @@ $livres->setDate(new  \DateTime());
        $em->persist($livres);
            $em->flush();
 
-       return $this->render('livres/newLivre.html.twig', [
+       return $this->render('livres/nouvelLivre.html.twig', [
            'livre' => $livres,
        ]);
 }    
 
-
-/**
-     * @Route("/action", name="livres_afficher", methods={"GET", "POST"})
-     */
-    public function action(Request $request, EntityManagerInterface $em): Response
-    {
-
-       $action = new Action();
-
-       $livres->setTitre(" Le titre de mon livre");
-       $livres->setHauteur("  l'auteur de mon livre");
-$livres->setDate("  La date de sortie de mon livre");
-$livres->setResume("  Le résumé de mon livre");
-$livres->setContenu("  Le contenu de mon livre");
-$livres->setCommentaires("  Les commentaires de mon livre");
-
-       $em->persist($livres);
-       $em->flush();
-
-       return $this->render('livres/index.html.twig', [
-           'livres' => $livres,
-       ]);
-
-
-    }
-
-/**
-     * @Route("/{id}", name="livres_affichage", methods={"GET"})
-     */
-    public function show(Livres $livres, LivresRepository $livresRepository, Request $request, EntityManagerInterface $manager ): Response
-    {
-        return $this->render('livres/affichage.html.twig', [
-            'id'=>$livres->getId(),
-            'livres' => $livres,
-        ]);
-    }
-
     /**
-     * @Route("/new", name="livres_nouveau", methods={"GET", "POST"})
-     */
-     public function nouveau(Request $request, EntityManagerInterface $em): Response
-     {
+* @Route("/newpageform", name="newpageform_livre")
+    */
+    public function pageForm(Request $request, EntityManagerInterface $manager)
+    {
+    
 
         $livres = new Livres();
 
-        $livres->setTitre(" Le titre de mon livre");
-                $livres->setHauteur("  l'auteur de mon livre");
-        $livres->setDate("  La date de sortie de mon livre");
-        $livres->setResume("  Le résumé de mon livre");
-        $livres->setContenu("  Le contenu de mon livre");
-        $livres->setCommentaires("  Les commentaires de mon livre");
+        $form = $this->createFormBuilder($livres) 
+        ->add('date')
+->add('titre')
+        ->add('hauteur')
+        ->add('resume')
+                    ->add('contenu')
+                                        ->add('commantaires')
+                    
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $manager->persist($livres); 
+            $manager->flush();
+    
+                return $this->redirectToRoute('newpageform_livre', 
         
-        $em->persist($livres);
-            $em->flush();
-
-        return $this->render('livres/nouveau.html.twig', [
-            'livres' => $livres,
+            ['id'=>$livres->getId(),
         ]);
+    } 
+        
+        
+            return $this->render('livres/nouvelLivre.html.twig',[
+            "formLivre" => $form->createView(),
+        ]);
+    }
+
+
+
+
 }
-
-
-
-
-
-
-
-}
-
-

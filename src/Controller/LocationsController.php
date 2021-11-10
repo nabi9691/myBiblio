@@ -22,7 +22,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class LocationsController extends AbstractController
 {
     /**
-     * @Route("/", name="locations_index")
+     * @Route("/", name="location_index")
      */
     public function index(): Response
     {
@@ -57,53 +57,77 @@ class LocationsController extends AbstractController
         $em->persist($locations);
         $em->flush();
 
-        return $this->render('locations/newLocation.html.twig', [
+        return $this->render('locations/nouvelleLocation.html.twig', [
             'location' => $locations,
         ]);
 }
 
 /**
-     * @Route("/{id}", name="locations_affichage", methods={"GET"})
-     */
-    public function show(Locations $locations, LocationsRepository $locationsRepository, Request $request, EntityManagerInterface $manager ): Response
+     * @Route("/newpageform", name="newpageform_location")
+    */
+    public function pageForm(Request $request, EntityManagerInterface $manager)
     {
-        return $this->render('locations/affichage.html.twig', [
-            'id'=>$locations->getId(),
-            'locations' => $locations,
+        $locations =new Locations(); 
+
+        $form = $this->createFormBuilder($locations) 
+                    
+        ->add('titre')
+        ->add('date')
+        ->add('image')
+                            ->add('adresse')
+                    ->add('statuts')
+                    
+
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $manager->persist($locations); 
+            $manager->flush();
+    
+                return $this->redirectToRoute('newpageform_location', 
+        
+            ['id'=>$locations ->getId(),
+        ]);
+    } 
+        
+        
+            return $this->render('locations/newLocation.html.twig',[
+            "formLocation" => $form->createView(),
         ]);
     }
 
     
 
-/**
-     * @Route("/action", name="locations_afficher", methods={"GET", "POST"})
+    /**
+     * @Route("/newwithformtype", name="newwithform", methods={"GET","POST"})
      */
-    public function action(Request $request, EntityManagerInterface $em): Response
+
+     public function newwithformtype(Request $request): Response
     {
+        $articles = new Articles();
+        $form = $this->createForm(ArticlesType::class, $articles);
+        $form->handleRequest($request);
 
-       $action = new Action();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($articles);
+            $entityManager->flush();
 
-       $locations->setDate(" Date de ma location");
-       $locations->setTitre(" Titre de ma location");
-       $locations->setCategorie(" Categorie de ma location");
-       $locations->setImage(" L'image de ma location");
-       $locations->setDescription(" Description de ma location");
-       $locations->setValeur(" La valeur de ma location");
-       $locations->setAdresse(" L'adresse de ma location");
-       $locations->setAccessibility(" L'accessibilité de ma location");
-       $locations->setStatuts(" Statuts de ma location");
-       $locations->setAlaUne(" à la une de ma location");
-       
+            return $this->redirectToRoute('articles_index', [], Response::HTTP_SEE_OTHER);
+        }
 
-       $em->persist($locations);
-       $em->flush();
-
-       return $this->render('locations/index.html.twig', [
-        'locations' => $locations,
-    ]);
-}
+        return $this->render('articles/new.html.twig', [
+            'articles' => $articles,
+            'form' => $form->createView(),
+        ]);
+    }
 
 
-    
+
+
+
 
 }

@@ -22,7 +22,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UsersController extends AbstractController
 {
     /**
-     * @Route("/", name="utilisateurs_index")
+     * @Route("/", name="utilisateur_index")
      */
     public function index(): Response
     {
@@ -33,7 +33,6 @@ class UsersController extends AbstractController
 'user' => $users,
         ]);
     }
-
 
     /**
      * @Route("/new", name="new_utilisateur", methods={"GET", "POST"})
@@ -65,13 +64,68 @@ class UsersController extends AbstractController
 }
 
 /**
-     * @Route("/{id}", name="users_affichage", methods={"GET"})
-     */
-    public function show(Users $users, UsersRepository $usersRepository, Request $request, EntityManagerInterface $manager ): Response
+     * @Route("/newpageform", name="newpageform_utilisateur")
+    */
+    public function pageForm(Request $request, EntityManagerInterface $manager)
     {
-        return $this->render('users/affichage.html.twig', [
-            'id'=>$users->getId(),
-            'utilisateur' => $users,
+    
+        $users =new Users(); 
+
+        $form = $this->createFormBuilder($users) 
+                    
+        ->add('nom')
+                    ->add('prenom')
+                    ->add('login')
+                    ->add('password')
+                    
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $manager->persist($users); 
+            $manager->flush();
+    
+                return $this->redirectToRoute('utilisateur_index', 
+        
+            ['id'=>$users->getId(),
+        ]);
+    } 
+        
+        
+            return $this->render('articles/newUtilisateur.html.twig',[
+            "formUtilisateur" => $form->createView(),
         ]);
     }
+
+    
+
+    /**
+     * @Route("/newwithformtype", name="newwithform", methods={"GET","POST"})
+     */
+
+     public function newwithformtype(Request $request): Response
+    {
+        $articles = new Articles();
+        $form = $this->createForm(ArticlesType::class, $articles);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($articles);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('articles_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('articles/new.html.twig', [
+            'articles' => $articles,
+            'form' => $form->createView(),
+        ]);
+    }
+    
+
+
 }
+    
