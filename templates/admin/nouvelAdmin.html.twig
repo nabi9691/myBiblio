@@ -1,0 +1,66 @@
+{% extends "base.html.twig" %}
+
+{% block title %} 
+Nouvel admin :
+{% endblock %}
+
+{% block body %}
+<h1>
+ NOUVEL ADMIN :
+ 
+ </h1>
+
+<br/><br/>
+
+<hr>
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+
+<br/>
+
+<div id="table" class="table">
+<table border="1">
+<tbody>
+<thead>
+<tr>
+<th>id</th>
+<th>Nom</th>
+<th>Prénom</th>
+<th>Login</th>
+<th>Password</th>
+
+</thead>
+</tr>
+<tr>
+{% for administrateur in administrateur  %}
+					{# https://twig.symfony.com/doc/3.x/tags/for.html #}
+				
+<tr>
+
+<td>{{ administrateur.id  }}</td>
+<td>{{ administrateur.nom  }}</td>
+<td>{{ administrateur.prenom  }}</td>
+<td>{{ administrateur.login  }}</td>
+<td>{{ administrateur.password  }}</td>
+
+<td></td>
+</tr>
+</div>
+{% endfor %}}
+			</tbody>
+		</table>
+        
+	</div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+    {% extends 'base.html.twig' %}
+
+{% block title %} 
+Menu
+{% endblock %}
+
+{% block body %}
+
+<hr>
+
+<h3>
+<ul>
+<li> <a href="{{ path('articles_index') }}"> 
+Liste de mes articles ! </a> </li>
+
+<li> <a href="{{ path('categories_index') }}"> 
+Liste de mes catégories ! </a> </li>
+
+<li> <a href="{{ path('livres_index') }}"> 
+Liste de mes livres ! </a> </li>
+
+<li> <a href="{{ path('locations_index') }}"> 
+Liste de mes locations ! </a> </li>
+
+</ul>
+</h3>
+
+
+{% endblock %}

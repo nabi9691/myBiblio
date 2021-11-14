@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<br/><br/>
+
+
+
+ESPACE ADMINISTRATEUR :
+{% endblock %}
+
+{% block body %}
+
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+<br/><br/>
+
+
+<div class="example-wrapper">
+    <h1>
+
+
+{{ admin_name      }}
+</h1>
+
+
+<br/><br/>
+
+<ul>
+
+
+
+
+<li>{% include 'menu_admin.html.twig' %}</li>
+
+<li> <a href="{{ path('new_administrateur') }}">
+NOUVEL ADMIN :</a></li> 
+
+
+<li> <a href="{{ path('form_administrateur') }}">
+FORMULAIRE CONTROLLER :</a></li> 
+
+<li> <a href="{{ path('formType_administrateur') }}">
+FORMULAIRE TYPE :</a></li> 
+
+
+
+</ul>
+
+<br/><br/>
+
+<hr>
+
+<br/>
+
+<div id="table" class="table">
+<table border="1">
+<thead>
+
+<br/><br/><br/>
+
+<tr>
+<th>id</th>
+<th>Nom</th>
+<th>Prénom</th>
+<th>Login</th>
+<th>Password</th>
+</tr>
+</thead>
+<br/><br/><br/>
+
+<tr>
+{% for admin in admin %}
+					{# https://twig.symfony.com/doc/3.x/tags/for.html #}
+<tbody>
+<br/><br/><br/>
+
+<tr>
+<td>{{ admin.id }}</td>
+<td>{{ admin.nom }}</td>
+<td>{{ admin.prenom }}</td>
+<td>{{ admin.login }}</td>
+<td>{{ admin.password }}</td>
+<td></td>
+</tr>
+{% endfor %}
+			</tbody>
+<br/><br/><br/>
+
+        </table>
+        
+	</div>
+
+{% endblock %}
+
+

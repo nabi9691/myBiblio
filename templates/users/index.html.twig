@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Gestion des utilisateurs :
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+<h1>
+GESTION DES UTILISATEURS :
+</h1>
+<br/><br/>
+<hr/>
+<br/>
+<div id="menu" class="menu">
+
+<ul>
+
+
+<li> <a href="{{ path('new_utilisateur') }}">
+NOUVEL UTILISATEUR :
+</a></li> 
+
+<li> <a href="{{ path('pageform_utilisateur') }}">
+FORMULAIRE CONTROLLER :
+</a></li> 
+
+<li> <a href="{{ path('formType_index') }}">
+FORMULAIRE TYPE :
+</a></li> 
+
+
+
+</ul>
+
+</div>
+		<table class="table">
+				{% for utilisateur in utilisateur    %}
+					{# https://twig.symfony.com/doc/3.x/tags/for.html #}
+					<tr>
+
+<td>{{  utilisateur.id }}</td>
+<td>{{  utilisateur.nom }}</td>
+<td>{{ utilisateur.prenom }}</td>
+<td>{{  utilisateur.datedenaissance }}</td>
+<td>{{ utilisateur.adresse }}</td>
+<td>{{ utilisateur.login }}</td>
+<td>{{ utilisateur.password }}</td>
+<td>{{ utilisateur.photo }}</td>
+<td>{{ utilisateur.email }}</td>
+<td>{{ utilisateur.role }}</td>
+<td>{{ utilisateur.locataire }}</td>
+<td>{{ utilisateur.proprietaire }}</td>
+<td>{{ utilisateur.gestionnaire }}</td>
+
+
+
+
+{% else %}
+					<tr>
+						<td colspan="5">Vous n'avez pas d'enregistrement!</td>
+						<td></td>
+					</tr>
+				{% endfor %}}
+			</tbody>
+		</table>
+        
+	</div>
+{% endblock %}
+    

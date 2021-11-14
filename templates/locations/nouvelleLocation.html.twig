@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+
+{% block title %} 
+
+NOUVELLE LOCATION :
+{% endblock %}
+
+{% block body %}
+<h1>
+ NOUVELLE LOCATION :
+ </h1>
+
+<br/><br/>
+
+<hr>
+
+<br/>
+
+<div id="table" class="table">
+<table border="1">
+
+<thead>
+<tr>
+<th>id</th>
+<th>Date</th>
+<th>Titre</th>
+<th>categories</th>
+<th>image</th>
+<th>description</th>
+<th>valeur</th>
+<th>adresse</th>
+<th>accessibility</th>
+<th>statuts</th>
+<th>à la une</th>
+</tr>
+</thead>
+
+            <tbody>
+				{% for location in location %}
+					{# https://twig.symfony.com/doc/3.x/tags/for.html #}
+					<tr>
+
+<td>{{ location.id }}</td>
+<td>{{ location.date|date("d/m/Y") }}</td>
+<td>{{ location.titre }}</td>
+<td>{{ location.categories }}</td>
+<td>{{ location.image }}</td>
+<td>{{ location.description }}</td>
+<td>{{ location.valeur }}</td>
+<td>{{ location.adresse }}</td>
+<td>{{ location.accessibility }}</td>
+<td>{{ location.statuts }}</td>
+<td>{{ location.alaune }}</td>
+
+					</tr>
+				{% endfor %}}
+			</tbody>
+		</table>
+        
+	</div>
+{% endblock %}

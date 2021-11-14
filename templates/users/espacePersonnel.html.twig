@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    
+{{ form_start(formEspacePersonnel) }}
+
+Nom: {{ form_widget(formEspacePersonnel.nom) }}<br>
+Prénom: {{ form_widget(formEspacePersonnel.prenom) }} <br>
+Login: {{ form_widget(formEspacePersonnel.login) }} <br>
+Password: {{ form_widget(formEspacePersonnel.password) }} <br>
+
+
+      
+<button type="submit" class="btn btn-success">envoyer</button>
+
+
+
+
+
+    {{ form_end(formEspacePersonnel) }}
+  
+<table>
+<tr>
+<th>nom </th>
+
+<tbody>
+<tr>
+<td>{{ espacePersonnel.nom     }} </td>
+</tr>
+</tbody>
+</table>
+
+
+{% endblock %}
+

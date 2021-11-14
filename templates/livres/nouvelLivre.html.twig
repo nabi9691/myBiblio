@@ -1,0 +1,55 @@
+{% extends "base.html.twig" %}
+
+{% block title %} 
+Nouvel livre 
+{% endblock %}
+
+{% block body %}
+<h1>
+ NOUVEL LIVRE :
+ </h1>
+
+<br/><br/>
+
+<hr>
+
+<br/>
+
+<div id="table" class="table">
+<table border="1">
+<tbody>
+<thead>
+<tr>
+<th>id</th>
+<th>titre</th>
+<th>contenu</th>
+<th>resume</th>
+<th>date</th>
+<th>image</th>
+
+</thead>
+</tr>
+<tr>
+{% for livre in livres %}
+					{# https://twig.symfony.com/doc/3.x/tags/for.html #}
+				
+<tr>
+<td>{{ livre.id }}</td>
+<td>{{ livre.titre }}</td>
+<td>{{ livre.contenu }}</td>
+
+<td>{{ livre.resume }}</td>
+<td>{{ livre.date|date(d/m/Y) }}</td>
+<td>{{ livre.image }}</td>
+
+
+<td></td>
+</tr>
+</div>
+{% endfor %}}
+			</tbody>
+		</table>
+        
+	</div>
+
+{% endblock %}

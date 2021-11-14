@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Gestion des livres :
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<h1>
+			gestion des livres :
+			</h1>
+<br/><br/>
+<hr/>
+<br/>
+<div id="menu" class="menu">
+<ul>
+<li> <a href="{{ path('new_livre') }}">
+NOUVEL LIVRE :
+</a></li> 
+
+<li> <a href="{{ path('newpageform_livre') }}">
+FORMULAIRE CONTROLLER :
+</a></li> 
+
+
+<li> <a href="{{ path('formType_index') }}">
+FORMULAIRE TYPE :
+</a></li> 
+
+
+
+</ul>
+</div>
+		<table class="table">
+			<tbody>
+				{% for livre in livres %}
+					{# https://twig.symfony.com/doc/3.x/tags/for.html #}
+					<tr>
+<td>{{ livre.id }}</td>
+<td>{{ livre.date|date("d/m/Y") }}</td>
+<td>{{ livre.titre }}</td>
+<td>{{ livre.hauteur }}</td>
+<td>{{ livre.resume }}</td>
+<td>{{ livre.contenu }}</td>
+                    <td>{{ livre.commentaires }}</td></tr>
+				{% else %}
+					<tr>
+						<td colspan="5">Vous n'avez pas d'enregistrement!
+						</td>
+						<td></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+        
+	</div>
+{% endblock %}

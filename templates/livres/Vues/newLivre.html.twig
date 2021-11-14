@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    
+{{ form_start(formLivre) }}
+
+
+Date: {{ form_widget(formLivre.date) }} <br>
+Titre : {{ form_widget(formLivre.titre) }}<br>
+Hauteur: {{ form_widget(formLivre.hauteur) }}<br>
+Résumé: {{ form_widget(formLivre.resume) }} <br>
+Contenu: {{ form_widget(formLivre.contenu) }} <br>
+Commentaires: {{ form_widget(formLivre.commentaires) }} <br>
+
+
+
+<button type="submit" class="btn btn-success">envoyer</button>
+
+
+
+    {{ form_end(formLivre) }}
+  
+  {% endblock %}
+

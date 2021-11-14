@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    
+{{ form_start(formUtilisateur) }}
+
+Nom : {{ form_widget(formUtilisateur.nom) }}<br>
+Prénom: {{ form_widget(formUtilisateur.prenom) }} <br>
+Login: {{ form_widget(formUtilisateur.login) }} <br>
+Password: {{ form_widget(formUtilisateur.password) }} <br>
+
+<button type="submit" class="btn btn-success">envoyer</button>
+
+
+      
+    {{ form_end(formUtilisateur) }}
+  {% endblock %}
+
