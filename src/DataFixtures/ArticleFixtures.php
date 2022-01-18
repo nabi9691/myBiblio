@@ -14,9 +14,9 @@ class ArticleFixtures extends Fixture
     {
         $faker = Faker\Factory::create('fr_FR');
 
-         // Creer occurence de 250 articles :
+         // Creer occurence de 500 articles :
         
-         for ($i=0; $i<1000 ; $i++ ) 
+         for ($i=0; $i<500 ; $i++ ) 
         { 
         
         $article = new Article();

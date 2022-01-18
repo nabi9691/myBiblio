@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\UtilisateurRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UtilisateurRepository;
 
 /**
  * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
@@ -79,8 +80,7 @@ private $datedenaissance;
 
         return $this;
     }
-
-
+    
     public function getDatedenaissance(): ?\DateTimeInterface
     {
         return $this->datedenaissance;

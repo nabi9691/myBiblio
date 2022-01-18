@@ -1,20 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CommentaireController!{% endblock %}
+{% block title %}
+Liste des commentaires :
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <br><br>
+    <h1>Liste des commentaires :</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<lu>
+<li><a href=" {{ path('nouvelCommentaire_index') }}"> Nouvel commentaire : </a></li>
+</lu>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/myMediateque/src/Controller/CommentaireController.php'|file_link(0) }}">src/Controller/CommentaireController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/myMediateque/templates/commentaire/index.html.twig'|file_link(0) }}">templates/commentaire/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <br><br>
+
+<table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Contenu</th>
+                 <th>Auteurs</th>
+                                <th>Modifier</th>
+            <th>Afficher</th>
+            <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commentaire in commentaire %}
+            <tr>
+                <td>{{ commentaire.id }}</td>
+                <td>{{ commentaire.date|date("d/m/Y") }}</td>
+                                <td>{{ commentaire.auteur }}</td>
+<td>
+                    <a href="{{ path('modifierCommentaire_index', {'id': commentaire.id }) }}">Modifier</a>
+                </td>
+                    <td>
+                    <a href="{{ path('afficherCommentaire_index', {'id': commentaire.id}) }}">Afficher</a>
+                    </td>
+            <td>
+                    <a href="{{ path('supprimerCommentaire_index', {'id': commentaire.id}) }}">Supprimer</a>
+                    </td>
+                        </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Pas d'Utulisateurs</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('nouvelUtilisateur_index') }}">Enregistrement d'in nouvel utilisateur :</a>
 {% endblock %}

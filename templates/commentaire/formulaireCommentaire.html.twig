@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    
+{{ form_start(formCommentaire) }}
+
+Date: {{ form_widget(formCommentaire.date) }}<br>
+Contenu: {{ form_widget(formCommentaire.contenu) }} <br>
+Auteur: {{ form_widget(formCommentaire.auteur) }} <br>
+
+
+
+<button type="submit" class="btn btn-success">envoyer</button>
+
+
+      
+    {{ form_end(formCommentaire) }}
+  {% endblock %}
+

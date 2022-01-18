@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Modifier un commentaire :
+{% endblock %}
+
+{% block body %}
+    
+    
+    <h1>
+        Modifier un commentaire :
+        </h1>
+
+{{ form_start(formCommentaire) }}
+
+<button type="submit" class="btn btn-success">envoyer</button>
+
+
+      
+    {{ form_end(formCommentaire) }}
+
+
+
+
+
+    {% endblock %}

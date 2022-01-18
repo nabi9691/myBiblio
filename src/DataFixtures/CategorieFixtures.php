@@ -14,9 +14,9 @@ class CategorieFixtures extends Fixture
     {
         $faker = Faker\Factory::create('fr_FR');
 
-         // Creer occurence de 150 categories :
+         // Creer occurence de 500 categories :
         
-         for ($i=0; $i<1500 ; $i++ ) 
+         for ($i=0; $i<500 ; $i++ ) 
         { 
         
         $categorie = new Categorie();

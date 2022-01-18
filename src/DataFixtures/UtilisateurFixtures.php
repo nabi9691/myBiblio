@@ -15,9 +15,9 @@ class UtilisateurFixtures extends Fixture
     {
         $faker = Faker\Factory::create('fr_FR');
 
-         // Creer occurence de 9 utilisateurs :
+         // Creer occurence de 500 utilisateurs :
         
-         for ($i=0; $i<9 ; $i++ ) 
+         for ($i=0; $i<500 ; $i++ ) 
         { 
         
         $utilisateur = new Utilisateur();

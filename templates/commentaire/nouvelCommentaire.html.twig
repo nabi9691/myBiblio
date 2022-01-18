@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+ Enregistrement d'un commentaire 
+ {% endblock %}
+
+{% block body %}
+ <br> <br>
+ 
+    <h1> Enregistrement d'un commentaire : </h1>
+
+    {{ include('commentaire/formulaireCommentaire.html.twig') }}<br>
+
+    <a href="{{ path('commentaire_index') }}">Liste des commentaires :</a><br>
+
+
+{% endblock %}
